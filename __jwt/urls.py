@@ -16,4 +16,10 @@ Including another URLconf
 
 from django.urls import path
 
-urlpatterns = []
+from .views import profile, login_view, refresh_token_view
+
+urlpatterns = [
+    path('profile', profile, name='profile'),
+    path('login', login_view, name='login'),
+    path('refresh-token', refresh_token_view, name='refresh-token')
+]

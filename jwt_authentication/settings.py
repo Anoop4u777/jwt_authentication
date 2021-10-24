@@ -37,10 +37,32 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Rest Framework
     'rest_framework',
+    # CORS
+    'corsheaders',
     # Apps
-    'jwt',
+    '__jwt',
 ]
+
+CORS_ALLOW_CREDENTIALS = True # to accept cookies via ajax request
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:8000' # the domain for front-end app(you can add more than 1) 
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        '__jwt.authentication.SafeJWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated', # make all endpoints private
+    )
+}
+
+AUTH_USER_MODEL = '__jwt.User'
+
+# JWT Refresh token
+REFRESH_TOKEN_SECRET = 'usfn8t33784r3rc@jlhmvdug)dhf gnwuryf@@suidfgnu)'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
